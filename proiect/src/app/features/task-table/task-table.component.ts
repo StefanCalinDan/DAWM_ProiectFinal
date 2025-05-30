@@ -67,6 +67,8 @@ export class TaskTableComponent implements OnInit {
       if (result) {
         const index = this.listOfTasks.findIndex(t => t.id === result.id);
 
+        console.log(result)
+
         if (index !== -1) {
           this.listOfTasks[index] = result;
           this.listOfTasks = [...this.listOfTasks];

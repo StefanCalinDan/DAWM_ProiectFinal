@@ -1,6 +1,6 @@
 <form nz-form [formGroup]="taskForm">
   <nz-form-item>
-    <nz-form-label nzFor="task-title" nzRequired>Task name</nz-form-label>
+    <nz-form-label nzFor="task-title" nzRequired>Title</nz-form-label>
     <nz-form-control nzErrorTip="Task title required" nzHasFeedback>
       <input
         nz-input
@@ -8,6 +8,62 @@
         placeholder="Enter task title"
         formControlName="title"
       />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="task-description" nzRequired
+      >Description</nz-form-label
+    >
+    <nz-form-control nzErrorTip="Task description required" nzHasFeedback>
+      <textarea
+        nz-input
+        id="task-description"
+        placeholder="Enter description"
+        formControlName="description"
+        rows="2"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="task-date" nzRequired>Due date</nz-form-label>
+    <nz-form-control nzErrorTip="Date required" nzHasFeedback>
+      <nz-date-picker
+        id="task-date"
+        formControlName="due_date"
+        style="width: 100%"
+        placeholder="Select due date"
+        [nzDisabledDate]="disablePastDates"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="task-status" nzRequired
+      >Status</nz-form-label
+    >
+    <nz-form-control nzErrorTip="Task status required" nzHasFeedback>
+      <nz-select
+      id="task-status"
+      formControlName="status"
+      placeholder="Select status"
+      [nzOptions]="statusOptions"
+    />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="task-priority" nzRequired
+      >Priority</nz-form-label
+    >
+    <nz-form-control nzErrorTip="Task priority required" nzHasFeedback>
+      <nz-select
+      id="task-priority"
+      formControlName="priority"
+      placeholder="Select priority"
+      [nzOptions]="priorityOptions"
+    />
     </nz-form-control>
   </nz-form-item>
 

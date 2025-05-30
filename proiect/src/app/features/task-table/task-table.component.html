@@ -13,10 +13,10 @@
     </tr>
   </thead>
   <tbody>
-    @for (data of filterTable.data; track data) {
+    @for (data of filterTable.data; track data.id) {
     <tr>
       <td>{{ data.title }}</td>
-      <td>{{ data.description }}</td>
+      <td class="description">{{ data.description }}</td>
       <td>{{ data.due_date | DatePipe }}</td>
       <td>{{ data.status | StatusToString }}</td>
       <td>{{ data.priority | PriorityToString }}</td>
