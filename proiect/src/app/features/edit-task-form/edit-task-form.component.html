@@ -1,0 +1,27 @@
+<form nz-form [formGroup]="taskForm">
+  <nz-form-item>
+    <nz-form-label nzFor="task-title" nzRequired>Task name</nz-form-label>
+    <nz-form-control nzErrorTip="Task title required" nzHasFeedback>
+      <input
+        nz-input
+        id="task-title"
+        placeholder="Enter task title"
+        formControlName="title"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button
+        nz-button
+        nzType="primary"
+        [disabled]="!taskForm.valid"
+        (click)="save()"
+      >
+        Save
+      </button>
+      <button nz-button (click)="cancel()">Cancel</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

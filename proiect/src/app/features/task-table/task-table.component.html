@@ -1,4 +1,4 @@
-<nz-table #filterTable [nzData]="listOfTasks" nzTableLayout="fixed">
+<nz-table #filterTable [nzData]="listOfTasks" [nzPageSize]="8">
   <thead>
     <tr>
       @for (column of listOfColumns; track column) {
@@ -17,7 +17,23 @@
     <tr>
       <td>{{ data.title }}</td>
       <td>{{ data.description }}</td>
-      <td>{{ data.due_date }}</td>
+      <td>{{ data.due_date | DatePipe }}</td>
+      <td>{{ data.status | StatusToString }}</td>
+      <td>{{ data.priority | PriorityToString }}</td>
+      <td>
+        <div class="buttons">
+          <button nz-button nzType="primary" (click)="openEditTaskModal(data)">
+            <i nz-icon nzType="edit"></i>
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            (click)="deleteRowFromTable(data.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </div>
+      </td>
     </tr>
     }
   </tbody>
