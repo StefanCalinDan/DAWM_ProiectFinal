@@ -1,10 +1,17 @@
 <button nz-button nzType="primary" (click)="openAddTaskModal()">Add Task</button>
 
 <div>
-  {{closestTask?.title}}
+  Closest task: {{closestTask?.title}}, {{closestTask?.due_date | DatePipe}}
 </div>
 
-<nz-table #filterTable [nzData]="listOfTasks" [nzPageSize]="8">
+<input 
+  type="text" 
+  placeholder="Search tasks..." 
+  [(ngModel)]="searchTerm" 
+  (input)="onSearch()" 
+/>
+
+<nz-table #filterTable [nzData]="filteredTasks" [nzPageSize]="8">
   <thead>
     <tr>
       @for (column of listOfColumns; track column) {

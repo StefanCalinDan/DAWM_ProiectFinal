@@ -1,12 +1,13 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: "DatePipe",
+  name: 'DatePipe',
   standalone: true,
 })
-
 export class DatePipe implements PipeTransform {
-    transform(value: Date | string): string {
+  transform(value: Date | string | undefined): string {
+    if (!value)
+      return "";
     const date = new Date(value);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');

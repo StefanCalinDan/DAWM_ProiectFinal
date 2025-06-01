@@ -9,8 +9,8 @@ import { StatusToString } from '../../core/pipes/status-to-string.pipe';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-table',
@@ -23,15 +23,19 @@ import { CommonModule } from '@angular/common';
     NzPaginationModule,
     NzIconModule,
     NzModalModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   templateUrl: './task-table.component.html',
   styleUrl: './task-table.component.scss',
 })
 export class TaskTableComponent implements OnInit {
   listOfTasks: Task[] = [];
+  filteredTasks: Task[] = [];
   listOfColumns: any[] = [];
   closestTask: Task | null = null;
+
+  searchTerm: string = '';
 
   constructor(
     private taskService: TaskService,
@@ -40,6 +44,7 @@ export class TaskTableComponent implements OnInit {
   ) {
     effect(() => {
       this.listOfTasks = this.taskService.listOfTasks();
+      this.onSearch();
     });
 
     effect(() => {
@@ -95,5 +100,12 @@ export class TaskTableComponent implements OnInit {
         }
       }
     });
+  }
+
+  onSearch(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredTasks = this.listOfTasks.filter((task) =>
+      task.title.toLowerCase().includes(term)
+    );
   }
 }
