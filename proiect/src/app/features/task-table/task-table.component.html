@@ -1,5 +1,9 @@
 <button nz-button nzType="primary" (click)="openAddTaskModal()">Add Task</button>
 
+<div>
+  {{closestTask?.title}}
+</div>
+
 <nz-table #filterTable [nzData]="listOfTasks" [nzPageSize]="8">
   <thead>
     <tr>

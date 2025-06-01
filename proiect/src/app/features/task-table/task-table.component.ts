@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { Task } from '../../core/interfaces/task.interface';
 import { TaskService } from '../../core/services/task.service';
 import { ColumnService } from '../../core/services/column.service';
@@ -9,7 +9,8 @@ import { StatusToString } from '../../core/pipes/status-to-string.pipe';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-table',
@@ -22,6 +23,7 @@ import { Subscription } from 'rxjs';
     NzPaginationModule,
     NzIconModule,
     NzModalModule,
+    CommonModule
   ],
   templateUrl: './task-table.component.html',
   styleUrl: './task-table.component.scss',
@@ -29,20 +31,20 @@ import { Subscription } from 'rxjs';
 export class TaskTableComponent implements OnInit {
   listOfTasks: Task[] = [];
   listOfColumns: any[] = [];
-
-  readonly subscription: Subscription = new Subscription();
+  closestTask: Task | null = null;
 
   constructor(
     private taskService: TaskService,
     private columnService: ColumnService,
     private modal: NzModalService
   ) {
-    this.subscription.add(
-      this.taskService.tasksChanged.subscribe((tasks: Task[]) => {
-        this.listOfTasks = tasks;
-        console.log('Updated GPU list:', this.listOfTasks);
-      })
-    );
+    effect(() => {
+      this.listOfTasks = this.taskService.listOfTasks();
+    });
+
+    effect(() => {
+      this.closestTask = this.taskService.closestTask();
+    });
   }
 
   ngOnInit(): void {
