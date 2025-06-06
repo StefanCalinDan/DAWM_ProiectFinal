@@ -1,0 +1,17 @@
+<div class="login-page-container">
+    <h2>Welcome!</h2>
+    @if(!showRegister){
+    <app-login-form class="form" (userData)="onLogin($event)"></app-login-form>
+
+    <button nz-button (click)="toggleForm()">Don't have an account? Register here!</button>
+    }
+    @else {
+    <app-register-form class="form" (userData)="onRegister($event)"></app-register-form>
+
+    <button nz-button (click)="toggleForm()">Already have an account? Login here!</button>
+    }
+
+    @if(loading){
+        <nz-spin nzSimple></nz-spin>
+    }
+</div>
