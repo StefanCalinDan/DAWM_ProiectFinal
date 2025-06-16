@@ -11,22 +11,22 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [LoginFormComponent, RegisterFormComponent,NzButtonModule,NzSpinModule],
+  imports: [LoginFormComponent, RegisterFormComponent, NzButtonModule, NzSpinModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
 
-  showRegister:boolean = false;
+  showRegister: boolean = false;
   loading: boolean = false;
 
-  constructor(private authService: AuthService, private notificationService: NzNotificationService, private router: Router){}
+  constructor(private authService: AuthService, private notificationService: NzNotificationService, private router: Router) { }
   onLogin(data: User) {
-    
+
     this.loading = true;
     this.authService.login({ email: data.email, password: data.password }).subscribe({
       next: (response) => {
-       
+
         this.authService.setToken(response.token);
         if (data.rememberMe)
           localStorage.setItem("userToken", response.token);
@@ -34,7 +34,7 @@ export class LoginPageComponent {
           sessionStorage.setItem("userToken", response.token);
 
         this.notificationService.success("Success", "Login success");
-        this.router.navigateByUrl("/tasks");
+        this.router.navigateByUrl("/");
         this.loading = false;
       },
       error: (error) => {
@@ -45,13 +45,13 @@ export class LoginPageComponent {
     });
   }
 
-  onRegister(data:User){
-   
+  onRegister(data: User) {
+
     data.email = "eve.holt@reqres.in"
     this.loading = true;
     this.authService.register({ email: data.email, password: data.password }).subscribe({
       next: (response) => {
-       
+
         this.authService.setToken(response.token);
         if (data.rememberMe)
           localStorage.setItem("userToken", response.token);
@@ -59,7 +59,7 @@ export class LoginPageComponent {
           sessionStorage.setItem("userToken", response.token);
 
         this.notificationService.success("Success", "Login success");
-        this.router.navigateByUrl("/tasks");
+        this.router.navigateByUrl("/");
         this.loading = false;
       },
       error: (error) => {
@@ -74,4 +74,4 @@ export class LoginPageComponent {
     this.showRegister = !this.showRegister;
   }
 
- }
+}

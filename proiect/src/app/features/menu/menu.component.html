@@ -1,0 +1,15 @@
+<ul nz-menu class="navbar" nzMode="horizontal">
+    <li nz-menu-item [nzSelected]="currentUrl === '/dashboard'" (click)="navigateTo('/dashboard')">
+        <i nz-icon nzType="home" nzTheme="outline"></i>
+        Home
+    </li>
+    <li nz-menu-item [nzSelected]="currentUrl === '/tasks'" (click)="navigateTo('/tasks')">
+        <i nz-icon nzType="file-done" nzTheme="outline"></i>
+        All Tasks
+    </li>
+    <li nz-menu-item class="logout-item" (click)="logout()">
+        <i nz-icon nzType="file-done" nzTheme="outline"></i>
+        LogOut
+    </li>
+
+</ul>

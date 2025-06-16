@@ -11,6 +11,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MenuComponent } from "../menu/menu.component";
 
 @Component({
   selector: 'app-task-table',
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     NzModalModule,
     CommonModule,
     FormsModule,
-  ],
+    MenuComponent
+],
   templateUrl: './task-table.component.html',
   styleUrl: './task-table.component.scss',
 })
