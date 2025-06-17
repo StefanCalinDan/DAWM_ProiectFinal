@@ -9,11 +9,13 @@ import { taskComparatorDESC } from '../../core/utils/task.compare';
 import { Status } from '../../core/enums/status.enum';
 import { DatePipe } from "../../core/pipes/date.pipe";
 import { HeroComponent } from "./hero/hero.component";
+import { Router } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NzIconModule, NzMenuModule, NzCardModule, MenuComponent, DatePipe, HeroComponent],
+  imports: [NzButtonModule,NzIconModule, NzMenuModule, NzCardModule, MenuComponent, DatePipe, HeroComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -21,7 +23,7 @@ export class DashboardComponent {
 
   listofTasks?: Task[];
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private router:Router) {
     this.listofTasks = this.taskService.getListOfTasks();
   }
 
@@ -34,5 +36,16 @@ export class DashboardComponent {
       .slice(0, 5) ?? []
   );
 
+  navigateTo(path: string) {
+    this.router.navigateByUrl(path);
+  }
+
+  scrollToTop():void{
+    window.scrollTo({
+     					 top: 0,
+      					behavior: 'smooth'
+    				});
+
+  }
 }
 
