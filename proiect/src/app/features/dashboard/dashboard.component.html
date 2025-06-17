@@ -1,1 +1,27 @@
 <app-menu></app-menu>
+
+<div class="content-container">
+
+    <app-hero></app-hero>
+
+    <div class="spacer">
+        <h2>Upcoming five tasks</h2>
+    </div>
+    <div class="task-list">
+        @for(task of upcomingFive(); track task) {
+        <nz-card class="card" nzTitle="{{task.title}}" [nzExtra]="extraTemplate">
+            <h3>Deadline:</h3>
+            <p>{{task.due_date | DatePipe}}</p>
+        </nz-card>
+        <ng-template #extraTemplate>
+            <a> Details</a>
+        </ng-template>
+        }
+
+
+    </div>
+
+    <div class="footer">
+        
+    </div>
+</div>
