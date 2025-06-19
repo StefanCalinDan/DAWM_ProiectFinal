@@ -1,4 +1,23 @@
 <div class = "hero-section">
 
+    
+        
+@if(selectedTask())
+{
+    <nz-card class="card" nzTitle="{{selectedTask()?.title}}" [nzBordered]="true">
+        <p><strong>Description:</strong> {{ selectedTask()?.description }}</p>
+        <p><strong>Deadline:</strong> {{ selectedTask()?.due_date | DatePipe }}</p>
+        <p><strong>Status:</strong> {{ selectedTask()?.status | StatusToString }}</p>
+        <p><strong>Priority:</strong> {{ selectedTask()?.priority | PriorityToString }}</p>
+      </nz-card>
+}
+@else{
+<nz-card class="card" nzTitle="Welcome!">
+    <p>
+     Select a task from the list to see details, deadline, status and priority.<br>
+     Use this section to work organized, view current tasks and stay productive!
+    </p>
+</nz-card>
+}
 
 </div>

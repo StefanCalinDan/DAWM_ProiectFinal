@@ -2,7 +2,7 @@
 
 <div class="content-container">
 
-    <app-hero></app-hero>
+    <app-hero [selectedTask]="selectedTask()"></app-hero>
 
     <div class="spacer">
         <h2>Upcoming five tasks</h2>
@@ -14,7 +14,7 @@
             <p>{{task.due_date | DatePipe}}</p>
         </nz-card>
         <ng-template #extraTemplate>
-            <a> Details</a>
+            <a (click) ="SelectTask(task)"> Details</a>
         </ng-template>
         }
 

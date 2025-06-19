@@ -7,7 +7,10 @@ import { Priority } from "../enums/priority.enum";
 })
 
 export class PriorityToString implements PipeTransform {
-    transform(value: Priority): string {
+    transform(value: Priority |undefined | null): string {
+        if (value === undefined || value === null) {
+      return '';
+    }
         switch (value) {
             case Priority.LOW:
                 return 'Low';

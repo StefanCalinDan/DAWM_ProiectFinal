@@ -7,7 +7,10 @@ import { Status } from "../enums/status.enum";
 })
 
 export class StatusToString implements PipeTransform {
-    transform(value: Status): string {
+    transform(value: Status |undefined | null): string {
+        if (value === undefined || value === null) {
+      return '';
+    }
         switch (value) {
             case Status.TO_DO:
                 return 'To do';

@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { MenuComponent } from "../menu/menu.component";
@@ -21,7 +21,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 })
 export class DashboardComponent {
 
+
   listofTasks?: Task[];
+
+  selectedTask = signal<Task | null | undefined >(null);
 
   constructor(private taskService: TaskService, private router:Router) {
     this.listofTasks = this.taskService.getListOfTasks();
@@ -36,7 +39,13 @@ export class DashboardComponent {
       .slice(0, 5) ?? []
   );
 
-  navigateTo(path: string) {
+
+  SelectTask(task:Task):void {
+   this.selectedTask.set(task);
+   this.scrollToTop();
+}
+
+  navigateTo(path: string):void {
     this.router.navigateByUrl(path);
   }
 
