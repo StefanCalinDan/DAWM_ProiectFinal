@@ -31,28 +31,23 @@ export class TaskService {
   }
 
   private calculateClosestTask(referenceDate: Date = new Date()): Task | null {
-    if (this.listOfTasks().length === 0) {
+    const upcomingTasks = this.listOfTasks().filter((task) => {
+      if (!task.due_date) return false;
+      const taskDate = new Date(task.due_date);
+      return taskDate >= referenceDate;
+    });
+
+    if (upcomingTasks.length === 0) {
       return null;
     }
 
-    const validTasks = this.listOfTasks()
-      .filter((task) => {
-        if (!task.due_date) return false;
-        const taskDate = new Date(task.due_date);
-        return taskDate >= referenceDate;
-      })
-      .map((task) => ({
-        ...task,
-        dateObj: new Date(task.due_date),
-      }));
+    upcomingTasks.sort((a, b) => {
+      const aDate = new Date(a.due_date);
+      const bDate = new Date(b.due_date);
+      return aDate.getTime() - bDate.getTime();
+    });
 
-    validTasks.sort(
-      (a, b) =>
-        Math.abs(a.dateObj.getTime() - referenceDate.getTime()) -
-        Math.abs(b.dateObj.getTime() - referenceDate.getTime())
-    );
-
-    return validTasks[0];
+    return upcomingTasks[0];
   }
 
   private updateClosestTask() {

@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Groceries",
     "description": "Buy milk and eggs",
-    "due_date": "2025-06-01",
+    "due_date": "2025-08-01",
     "status": 4,
     "priority": 1
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "title": "Workout",
     "description": "Go to the gym for cardio",
-    "due_date": "2025-06-02",
+    "due_date": "2025-09-02",
     "status": 5,
     "priority": 2
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "title": "Project Report",
     "description": "Finish and submit the project report",
-    "due_date": "2025-06-03",
+    "due_date": "2025-10-03",
     "status": 6,
     "priority": 3
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "title": "Team Meeting",
     "description": "Weekly team sync-up",
-    "due_date": "2025-06-04",
+    "due_date": "2025-08-04",
     "status": 4,
     "priority": 2
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "title": "Call Mom",
     "description": "Check in and chat",
-    "due_date": "2025-06-01",
+    "due_date": "2025-11-01",
     "status": 5,
     "priority": 1
   },
@@ -43,7 +43,7 @@
     "id": 6,
     "title": "Pay Bills",
     "description": "Electricity and internet bills",
-    "due_date": "2025-06-05",
+    "due_date": "2025-12-05",
     "status": 6,
     "priority": 2
   },
@@ -51,7 +51,7 @@
     "id": 7,
     "title": "Read Book",
     "description": "Finish reading current novel",
-    "due_date": "2025-06-06",
+    "due_date": "2025-08-06",
     "status": 4,
     "priority": 3
   },
@@ -59,7 +59,7 @@
     "id": 8,
     "title": "Doctor Appointment",
     "description": "Routine check-up at 10 AM",
-    "due_date": "2025-06-07",
+    "due_date": "2025-09-07",
     "status": 5,
     "priority": 3
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "title": "Car Maintenance",
     "description": "Change oil and rotate tires",
-    "due_date": "2025-06-08",
+    "due_date": "2025-09-08",
     "status": 6,
     "priority": 1
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "title": "Study Angular",
     "description": "Review lifecycle hooks and routing",
-    "due_date": "2025-06-09",
+    "due_date": "2025-09-09",
     "status": 5,
     "priority": 2
   }

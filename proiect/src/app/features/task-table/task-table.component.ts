@@ -45,11 +45,12 @@ export class TaskTableComponent implements OnInit {
     private modal: NzModalService
   ) {
     effect(() => {
-      this.listOfTasks = this.taskService.listOfTasks();
+      this.listOfTasks = this.taskService.getListOfTasks();
       this.onSearch();
     });
 
     effect(() => {
+      console.log(this.taskService.closestTask())
       this.closestTask = this.taskService.closestTask();
     });
   }
