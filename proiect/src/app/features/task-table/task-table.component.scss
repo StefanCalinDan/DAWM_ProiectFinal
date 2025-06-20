@@ -1,3 +1,39 @@
+.button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.add-task-button {
+  background-color: #1890ff;
+  border-color: #1890ff;
+
+  &:hover {
+    background-color: darken(#1677ff, 10%);
+    border-color: darken(#1677ff, 10%);
+  }
+}
+
+.closest-task {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.search-container {
+  max-width: 90%;
+  margin: 0 auto 20px;
+
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+}
+
+.table-wrapper {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 .buttons {
   display: flex;
   justify-content: center;

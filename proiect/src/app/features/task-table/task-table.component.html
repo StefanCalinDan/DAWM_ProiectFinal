@@ -1,55 +1,68 @@
 <app-menu></app-menu>
 
-<button nz-button nzType="primary" (click)="openAddTaskModal()">Add Task</button>
+<div class="button-container">
+  <button 
+    nz-button 
+    nzType="primary" 
+    (click)="openAddTaskModal()" 
+    class="add-task-button"
+  >
+    Add Task
+  </button>
 
-<div>
-  Closest task: {{closestTask?.title}}, {{closestTask?.due_date | DatePipe}}
+  <div class="closest-task">
+    Closest task: {{ closestTask?.title }}, {{ closestTask?.due_date | DatePipe }}
+  </div>
 </div>
 
-<input 
-  type="text" 
-  placeholder="Search tasks..." 
-  [(ngModel)]="searchTerm" 
-  (input)="onSearch()" 
-/>
+<div class="search-container">
+  <input 
+    type="text" 
+    placeholder="Search tasks..." 
+    [(ngModel)]="searchTerm" 
+    (input)="onSearch()" 
+  />
+</div>
 
-<nz-table #filterTable [nzData]="filteredTasks" [nzPageSize]="8">
-  <thead>
-    <tr>
-      @for (column of listOfColumns; track column) {
-      <th
-        [nzSortOrder]="column.sortOrder"
-        [nzSortFn]="column.sortFn"
-        [nzSortDirections]="column.sortDirections"
-      >
-        {{ column.name }}
-      </th>
+<div class="table-wrapper">
+  <nz-table #filterTable [nzData]="filteredTasks" [nzPageSize]="8">
+    <thead>
+      <tr>
+        @for (column of listOfColumns; track column) {
+        <th
+          [nzSortOrder]="column.sortOrder"
+          [nzSortFn]="column.sortFn"
+          [nzSortDirections]="column.sortDirections"
+        >
+          {{ column.name }}
+        </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of filterTable.data; track data.id) {
+      <tr>
+        <td>{{ data.title }}</td>
+        <td class="description">{{ data.description }}</td>
+        <td>{{ data.due_date | DatePipe }}</td>
+        <td>{{ data.status | StatusToString }}</td>
+        <td>{{ data.priority | PriorityToString }}</td>
+        <td>
+          <div class="buttons">
+            <button nz-button nzType="primary" (click)="openEditTaskModal(data)">
+              <i nz-icon nzType="edit"></i>
+            </button>
+            <button
+              nz-button
+              nzType="primary"
+              (click)="deleteRowFromTable(data.id)"
+            >
+              <i nz-icon nzType="delete"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
       }
-    </tr>
-  </thead>
-  <tbody>
-    @for (data of filterTable.data; track data.id) {
-    <tr>
-      <td>{{ data.title }}</td>
-      <td class="description">{{ data.description }}</td>
-      <td>{{ data.due_date | DatePipe }}</td>
-      <td>{{ data.status | StatusToString }}</td>
-      <td>{{ data.priority | PriorityToString }}</td>
-      <td>
-        <div class="buttons">
-          <button nz-button nzType="primary" (click)="openEditTaskModal(data)">
-            <i nz-icon nzType="edit"></i>
-          </button>
-          <button
-            nz-button
-            nzType="primary"
-            (click)="deleteRowFromTable(data.id)"
-          >
-            <i nz-icon nzType="delete"></i>
-          </button>
-        </div>
-      </td>
-    </tr>
-    }
-  </tbody>
-</nz-table>
+    </tbody>
+  </nz-table>
+</div>
