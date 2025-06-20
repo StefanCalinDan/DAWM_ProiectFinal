@@ -5,7 +5,7 @@ import { MenuComponent } from "../menu/menu.component";
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { TaskService } from '../../core/services/task.service';
 import { Task } from '../../core/interfaces/task.interface';
-import { taskComparatorDESC } from '../../core/utils/task.compare';
+import { taskComparatorASC, taskComparatorDESC } from '../../core/utils/task.compare';
 import { Status } from '../../core/enums/status.enum';
 import { DatePipe } from "../../core/pipes/date.pipe";
 import { HeroComponent } from "./hero/hero.component";
@@ -36,7 +36,7 @@ export class DashboardComponent {
         (task.status === Status.TO_DO || task.status === Status.IN_PROGRESS) &&
       new Date(task.due_date) >= this.today()
       )
-      .sort(taskComparatorDESC)
+      .sort(taskComparatorASC)
       .slice(0, 5) ?? []
   );
 
