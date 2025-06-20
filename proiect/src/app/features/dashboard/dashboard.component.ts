@@ -33,13 +33,17 @@ export class DashboardComponent {
   upcomingFive = computed(() =>
     this.listofTasks
       ?.filter(task =>
-        task.status === Status.TO_DO || task.status === Status.IN_PROGRESS
+        (task.status === Status.TO_DO || task.status === Status.IN_PROGRESS) &&
+      new Date(task.due_date) >= this.today()
       )
       .sort(taskComparatorDESC)
       .slice(0, 5) ?? []
   );
 
-
+today() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
   SelectTask(task:Task):void {
    this.selectedTask.set(task);
    this.scrollToTop();
